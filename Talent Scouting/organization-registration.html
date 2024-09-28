@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Organization Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Sports Organization Registration Form</h2>
+    <form action="/submit-organization" method="POST">
+        <label for="org-name">Organization Name:</label>
+        <input type="text" id="org-name" name="org-name" required>
+
+        <label for="sports">Sports Offered:</label>
+        <textarea id="sports" name="sports" rows="4" required></textarea>
+
+        <label for="achievements">Achievements:</label>
+        <textarea id="achievements" name="achievements" rows="4"></textarea>
+
+        <label for="about">About the Organization:</label>
+        <textarea id="about" name="about" rows="6" required></textarea>
+
+        <label for="facilities">Facilities Available:</label>
+        <textarea id="facilities" name="facilities" rows="4"></textarea>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+</body>
+</html>

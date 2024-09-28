@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPOTTING STARS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .tab {
+            display: flex;
+            background-color: #007bff;
+            justify-content: space-around;
+        }
+        .tab button {
+            background-color: inherit;
+            border: none;
+            padding: 14px 16px;
+            cursor: pointer;
+            color: white;
+            font-size: 17px;
+            flex-grow: 1;
+            text-align: center;
+        }
+        .tab button:hover, .tab button.active {
+            background-color: #0056b3;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button.submit-btn {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+        button.submit-btn:hover {
+            background-color: #218838;
+        }
+        .social-login {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .social-login button {
+            margin: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .google-btn {
+            background-color: #db4437;
+        }
+        .microsoft-btn {
+            background-color: #2b579a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>SPOTTING STARS</h1>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Athlete')" id="defaultOpen">Athlete</button>
+        <button class="tablinks" onclick="openTab(event, 'Coach')">Coach</button>
+        <button class="tablinks" onclick="openTab(event, 'Organization')">Organization</button>
+    </div>
+
+    <!-- Athlete Registration Form -->
+    <div id="Athlete" class="tabcontent">
+        <h2>Athlete Registration</h2>
+        <form action="/submit-athlete" method="POST">
+            <label for="athleteName">Full Name:</label>
+            <input type="text" id="athleteName" name="name" required>
+
+            <label for="athleteDOB">Date of Birth:</label>
+            <input type="date" id="athleteDOB" name="dob" required>
+
+            <label for="athletePlace">Place:</label>
+            <input type="text" id="athletePlace" name="place" required>
+
+            <label for="athleteAge">Age:</label>
+            <input type="number" id="athleteAge" name="age" required>
+
+            <label for="athleteSex">Sex:</label>
+            <select id="athleteSex" name="sex" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="athleteSports">Sports:</label>
+            <input type="text" id="athleteSports" name="sports" required>
+
+            <label for="athleteAchievements">Achievements:</label>
+            <input type="text" id="athleteAchievements" name="achievements">
+
+            <label for="athleteTeam">Team (if applicable):</label>
+            <input type="text" id="athleteTeam" name="team">
+
+            <label for="athleteCoach">Coached by:</label>
+            <input type="text" id="athleteCoach" name="coach">
+
+            <button class="submit-btn" type="submit">Register as Athlete</button>
+        </form>
+        <div class="social-login">
+            <button class="google-btn" onclick="socialLogin('Google')">Register with Google</button>
+            <button class="microsoft-btn" onclick="socialLogin('Microsoft')">Register with Microsoft</button>
+        </div>
+    </div>
+
+    <!-- Coach Registration Form -->
+    <div id="Coach" class="tabcontent">
+        <h2>Coach Registration</h2>
+        <form action="/submit-coach" method="POST">
+            <label for="coachName">Full Name:</label>
+            <input type="text" id="coachName" name="name" required>
+
+            <label for="coachDOB">Date of Birth:</label>
+            <input type="date" id="coachDOB" name="dob" required>
+
+            <label for="coachPlace">Place:</label>
+            <input type="text" id="coachPlace" name="place" required>
+
+            <label for="coachAge">Age:</label>
+            <input type="number" id="coachAge" name="age" required>
+
+            <label for="coachSex">Sex:</label>
+            <select id="coachSex" name="sex" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="coachNotableTeams">Notable Teams Coached:</label>
+            <input type="text" id="coachNotableTeams" name="notableTeams">
+
+            <label for="coachNotablePlayers">Notable Players Coached:</label>
+            <input type="text" id="coachNotablePlayers" name="notablePlayers">
+
+            <label for="coachLicense">International License:</label>
+            <input type="text" id="coachLicense" name="license">
+
+            <button class="submit-btn" type="submit">Register as Coach</button>
+        </form>
+        <div class="social-login">
+            <button class="google-btn" onclick="socialLogin('Google')">Register with Google</button>
+            <button class="microsoft-btn" onclick="socialLogin('Microsoft')">Register with Microsoft</button>
+        </div>
+    </div>
+
+    <!-- Organization Registration Form -->
+    <div id="Organization" class="tabcontent">
+        <h2>Organization Registration</h2>
+        <form action="/submit-organization" method="POST">
+            <label for="orgName">Organization Name:</label>
+            <input type="text" id="orgName" name="orgName" required>
+
+            <label for="orgSports">Sports:</label>
+            <input type="text" id="orgSports" name="sports" required>
+
+            <label for="orgAchievements">Achievements:</label>
+            <input type="text" id="orgAchievements" name="achievements">
+
+            <label for="orgAbout">About Organization:</label>
+            <textarea id="orgAbout" name="about"></textarea>
+
+            <label for="orgFacilities">Facilities:</label>
+            <input type="text" id="orgFacilities" name="facilities">
+
+            <button class="submit-btn" type="submit">Register as Organization</button>
+        </form>
+        <div class="social-login">
+            <button class="google-btn" onclick="socialLogin('Google')">Register with Google</button>
+            <button class="microsoft-btn" onclick="socialLogin('Microsoft')">Register with Microsoft</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to open tabs
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none"; // Hide all tabs
+        }
+        tablinks = document.querySelectorAll(".tab button");
+        tablinks.forEach(function(btn) {
+            btn.classList.remove("active");
+        });
+        document.getElementById(tabName).style.display = "block"; // Show the selected tab
+        evt.currentTarget.classList.add("active");
+    }
+
+    // Click on the default tab to open it
+    document.getElementById("defaultOpen").click();
+
+    // Function for social login (placeholder)
+    function socialLogin(provider) {
+        alert("Redirecting to " + provider + " login...");
+        // Implement social login functionality here
+    }
+</script>
+
+</body>
+</html>

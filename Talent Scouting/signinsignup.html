@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        .toggle {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .toggle a {
+            cursor: pointer;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .error {
+            color: red;
+            text-align: center;
+        }
+        .show-password-icon {
+            position: absolute;
+            right: 10px;
+            top: 38px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 id="form-title">Sign Up</h2>
+    <form id="auth-form">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Create Password:</label>
+            <input type="password" id="password" required>
+            <span class="show-password-icon" onclick="togglePasswordVisibility('password')">&#128065;</span>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" required>
+            <span class="show-password-icon" onclick="togglePasswordVisibility('confirm-password')">&#128065;</span>
+        </div>
+        <div class="form-group">
+            <button type="submit" id="submit-btn">Create Account</button>
+        </div>
+        <p class="error" id="error-msg" style="display: none;"></p>
+        <div class="toggle">
+            <span id="toggle-text">Already have an account?</span> 
+            <a id="toggle-link" onclick="toggleForm()">Login</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    let isSignUp = true; // Default form is Sign Up
+
+    function toggleForm() {
+        isSignUp = !isSignUp;
+        const formTitle = document.getElementById('form-title');
+        const submitBtn = document.getElementById('submit-btn');
+        const toggleText = document.getElementById('toggle-text');
+        const toggleLink = document.getElementById('toggle-link');
+        const errorMsg = document.getElementById('error-msg');
+        
+        if (!isSignUp) {
+            formTitle.innerText = 'Login';
+            submitBtn.innerText = 'Login';
+            toggleText.innerText = "Don't have an account?";
+            toggleLink.innerText = 'Sign Up';
+            document.getElementById('confirm-password').style.display = 'none';
+        } else {
+            formTitle.innerText = 'Sign Up';
+            submitBtn.innerText = 'Create Account';
+            toggleText.innerText = "Already have an account?";
+            toggleLink.innerText = 'Login';
+            document.getElementById('confirm-password').style.display = 'block';
+            errorMsg.style.display = 'none';
+        }
+    }
+
+    document.getElementById('auth-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting normally
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        const errorMsg = document.getElementById('error-msg');
+
+        if (isSignUp) {
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                errorMsg.innerText = "Passwords do not match!";
+                errorMsg.style.display = "block";
+                return;
+            } else {
+                errorMsg.style.display = "none";
+                alert("Account created successfully!");
+                // Here, you would normally handle storing the account credentials in a database
+            }
+        } else {
+            alert("Logged in successfully!");
+            // Handle login logic here, like verifying credentials
+        }
+    });
+
+    // Toggle password visibility
+    function togglePasswordVisibility(id) {
+        const passwordInput = document.getElementById(id);
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    }
+</script>
+
+</body>
+</html>

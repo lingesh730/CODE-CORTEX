@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Coach Registration Form</h2>
+    <form action="/submit-coach" method="POST">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="place">Place:</label>
+        <input type="text" id="place" name="place" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+
+        <label for="sport-type">Is it Team or Individual Sport?</label>
+        <select id="sport-type" name="sport-type" required>
+            <option value="team">Team</option>
+            <option value="individual">Individual</option>
+        </select>
+
+        <!-- Team specific field -->
+        <div id="team-sport-section" style="display:none;">
+            <label for="notable-teams">Notable Teams Coached:</label>
+            <textarea id="notable-teams" name="notable-teams" rows="4"></textarea>
+        </div>
+
+        <!-- Individual specific field -->
+        <div id="individual-sport-section" style="display:none;">
+            <label for="notable-players">Notable Players Coached:</label>
+            <textarea id="notable-players" name="notable-players" rows="4"></textarea>
+        </div>
+
+        <label for="license">International Coaching License:</label>
+        <input type="file" id="license" name="license" required>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<script>
+    // JavaScript to show/hide fields based on team or individual sport selection
+    document.getElementById('sport-type').addEventListener('change', function() {
+        const teamSection = document.getElementById('team-sport-section');
+        const individualSection = document.getElementById('individual-sport-section');
+        
+        if (this.value === 'team') {
+            teamSection.style.display = 'block';
+            individualSection.style.display = 'none';
+        } else {
+            teamSection.style.display = 'none';
+            individualSection.style.display = 'block';
+        }
+    });
+</script>
+
+</body>
+</html>
